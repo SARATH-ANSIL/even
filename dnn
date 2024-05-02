@@ -1,0 +1,260 @@
+img1 = img.copy()
+cascade_path = '/content/frontalEyes35x16.xml'
+eye_cascade = cv2.CascadeClassifier(cascade_path)
+eye = eye_cascade.detectMultiScale(img)
+eye
+eye_x, eye_y, eye_w, eye_h = eye[0]
+eye_x, eye_y, eye_w, eye_h
+img = cv2.rectangle(img, (eye_x, eye_y), (eye_x + eye_w, eye_y + eye_h), (0,255,255), 2)
+plt.imshow(img)
+plt.show()
+
+# import numpy as np
+# import cv2
+#
+# cap = cv2.VideoCapture("./video1.mp4")
+#
+# v_c = cv2.CascadeClassifier('./haarcascade_car.xml')
+#
+# while cap.isOpened():
+#     ret, frame = cap.read()
+#
+#     if not ret:
+#         break
+#     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#
+#     detect = v_c.detectMultiScale(gray, 1.1, 5)
+#     for (x, y, w, h) in detect:
+#         cv2.rectangle(frame, (x, y), (x + w, h + y), (0, 255, 0), 2)
+#         print(x)
+#     cv2.imshow('car', frame)
+#     if cv2.waitKey(1) & 0xFF == ord('q'):
+#         break
+# cap.release()
+# cv2.destroyAllWindows()
+import cv2
+# <---------EX -1 -------------->
+
+
+# from PIL import Image
+# from IPython.display import display
+#
+# img = Image.open('./download.jpg').convert('RGBA')
+# img1 = Image.open('./sun.jpg').convert('RGBA')
+#
+# img1_r = img1.resize((80, 90))
+#
+# data = img1_r.getdata()
+# new_arr = []
+#
+# for i in data:
+#     if i[:3] == (255, 255, 255):
+#         new_arr.append((255, 255, 255, 0))
+#     else:
+#         new_arr.append(i)
+#
+# img1_r.putdata(new_arr)
+#
+# img.paste(img1_r, (60, 50), img1_r)
+# img.save('output.png')
+
+
+# <------------EX - 2 -------------->
+
+# import cv2
+# import numpy as np
+#
+# img= cv2.imread('./skinn.jpg')
+#
+# gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+#
+# blur = cv2.GaussianBlur(gray, (5,5), 0)
+#
+# thresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV,11,10)
+#
+# result = cv2.inpaint(img,thresh, 3,cv2.INPAINT_TELEA)
+#
+# cv2.imshow('result', result)
+#
+# cv2.waitKey(100000)
+
+# <-----------EX - 4 --------------->
+
+# import cv2
+# from cvzone.SelfiSegmentationModule import SelfiSegmentation
+#
+# fg = cv2.imread('./fg.jpg')
+# bg = cv2.imread('./bg.jpg')
+#
+# h=480
+# w=640
+#
+# fg= cv2.resize(fg, (w, h))
+# bg= cv2.resize(bg, (w, h))
+#
+# s=SelfiSegmentation()
+# result=s.removeBG(fg,bg,0.3)
+#
+# cv2.imshow('result', result)
+# cv2.waitKey(100000)
+
+# <-------- EX - 5 ----------->
+
+# import numpy as np
+#
+# img= cv2.imread('./sun.jpg')
+#
+# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#
+# blur = cv2.GaussianBlur(gray, (5, 5), 0)
+#
+# edge = cv2.Canny(blur, 150, 50)
+#
+# result,_ = cv2.findContours(edge, cv2.RETR_TREE,  cv2.CHAIN_APPROX_SIMPLE)
+#
+# f_result= cv2.drawContours(img, result,-1, (0,255,0),2)
+#
+# cv2.imshow('you', f_result)
+# cv2.waitKey(100000)
+
+
+#<----------------------EX - 7 ---------------->
+
+# import numpy as np
+#
+# img = cv2.imread('skinn.jpg')
+#
+# gray = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+#
+# blur = cv2.GaussianBlur(gray, (5,5) ,0)
+#
+# ret, thresh = cv2.threshold(blur,0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+#
+# kernel = np.zeros((5,5),np.uint8)
+#
+# morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+#
+# contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#
+# result = cv2.drawContours(img, contours , -1, (0,255,0), 2)
+#
+# cv2.imshow(' ', thresh)
+#
+# cv2.waitKey(1000000)
+
+
+# <-----------------EX - 6 ---------------->
+
+# import numpy as np
+# import cv2
+# img1= cv2.imread('./img1.jpg')
+# img2=cv2.imread('./img2.jpg')
+#
+# orb = cv2.ORB_create()
+#
+# tkey , tdesc =  orb.detectAndCompute(img1,None)
+# qkey, qdesc = orb.detectAndCompute(img2,None)
+#
+# matcher = cv2.BFMatcher()
+# match = matcher.match(tdesc, qdesc)
+#
+# f_img = cv2.drawMatches(img1, tkey, img2, qkey, match[:20], None)
+#
+# cv2.imshow('img', f_img)
+# cv2.waitKey(10000000)
+#
+
+# <-------- EX -  9----------->
+
+# import numpy as np
+#
+# img = cv2.imread('skinn.jpg')
+#
+# gray = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+#
+# blur = cv2.GaussianBlur(gray, (5,5) ,0)
+#
+# ret, thresh = cv2.threshold(blur,0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+#
+# kernel = np.zeros((5,5),np.uint8)
+#
+# morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+#
+# contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#
+# result = cv2.drawContours(img, contours , -1, (0,255,0), 2)
+#
+# cv2.imshow(' ', result)
+#
+# cv2.waitKey(1000000)
+# <------------------last ex ----------------->
+
+# import cv2
+#
+# cap = cv2.VideoCapture("video1.mp4")
+# v=cv2.CascadeClassifier('haarcascade_car.xml')
+#
+# while cap.isOpened():
+#     ret, frame = cap.read()
+#
+#     if not ret:
+#         break
+#     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#
+#     result = v.detectMultiScale(gray, 1.1 , 5)
+#
+#     for (x,y,w,h) in result:
+#         cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 2)
+#
+#     cv2.imshow('car', frame)
+#     cv2.waitKey(100)
+#
+# cap.release()
+#
+#
+#
+
+
+
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+net = cv2.dnn.readNetFromCaffe('/content/face-detection-with-OpenCV-and-DNN/deploy.prototxt.txt','/content/face-detection-with-OpenCV-and-DNN/res10_300x300_ssd_iter_140000.caffemodel')
+img = cv2.imread('ani.jpeg')
+(h,w) = img.shape[:2]
+blob = cv2.dnn.blobFromImage(cv2.resize(img,(300,300)), 0.007842, (300,300), 127.5)
+net.setInput(blob)
+detect= net.forward()
+for i in range(0, detect.shape[2]):
+  confidence = detect[0,0,i,2]
+  if confidence > 0.1 :
+    box = detect[0,0,i,3:7]*np.array([w,h,w,h])
+    (x1,y1,x2,y2)=box.astype("int")
+    cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0), 2)
+cv2_imshow(img)
+
+
+
+
+import numpy as np
+import cv2
+
+img = cv2.imread('img1.jpg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+inv = cv2.bitwise_not(img)
+
+saturated = cv2.convertScaleAbs(img, alpha=1.5 , beta= 0)
+
+ss = cv2.convertScaleAbs(img, alpha=5 , beta= 1.0)
+
+blur = cv2.GaussianBlur(img, (5,5) , 0)
+
+cv2.imshow('gray' , gray)
+cv2.waitKey(1000)
+cv2.imshow('gray' , inv)
+cv2.waitKey(1000)
+cv2.imshow('gray' , saturated)
+cv2.waitKey(1000)
+cv2.imshow('gray' , ss)
+cv2.waitKey(1000)
